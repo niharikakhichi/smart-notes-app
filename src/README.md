@@ -19,23 +19,7 @@ A simple React-based notes application built with Vite. Supports adding, editing
 | Styling | Inline CSS styles |
 | Persistence | Browser localStorage |
 | Build Tool | Vite 8 + Rolldown 
-# Project Structure
 
-smart-notes-app/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/         # Reusable UI components
-│   ├── App.jsx             # Root component — note state & logic
-│   ├── main.jsx            # React entry point (mounts to #root)
-│   └── index.css           # Global styles
-├── index.html              # Vite HTML entry point
-├── vite.config.js          # Vite configuration
-├── eslint.config.js        # ESLint flat config
-├── package.json
-└── README.md
-
----
 
 # Getting Started
 
