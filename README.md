@@ -5,7 +5,7 @@ A modern Notes Application built using React and Vite with component-based archi
 
 ## Live Demo
 
-https://smart-notes-app-eight.vercel.app
+ https://smart-notes-app-eight.vercel.app
 
 # Features
 
