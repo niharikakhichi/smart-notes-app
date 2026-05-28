@@ -8,23 +8,30 @@ import './styles/app.css'
 function App() {
   const [notes, setNotes] = useState([])
   const [search, setSearch] = useState('')
-  const [darkMode, setDarkMode] = useState(true)
+  const [darkMode, setDarkMode] = useState(false)
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem('smart-notes'))
+    const savedNotes = JSON.parse(localStorage.getItem('notes'))
 
-    if (saved) {
-      setNotes(saved)
+    if (savedNotes) {
+      setNotes(savedNotes)
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('smart-notes', JSON.stringify(notes))
+    localStorage.setItem('notes', JSON.stringify(notes))
   }, [notes])
 
   const addNote = (text) => {
+    const title = text
+      .split(' ')
+      .slice(0, 3)
+      .join(' ')
+      .toUpperCase()
+
     const newNote = {
       id: Date.now(),
+      title,
       text,
       createdAt: new Date().toLocaleString(),
     }
@@ -33,7 +40,8 @@ function App() {
   }
 
   const deleteNote = (id) => {
-    setNotes(notes.filter((note) => note.id !== id))
+    const filteredNotes = notes.filter((note) => note.id !== id)
+    setNotes(filteredNotes)
   }
 
   const filteredNotes = notes.filter((note) =>
@@ -42,16 +50,10 @@ function App() {
 
   return (
     <div className={darkMode ? 'app dark' : 'app'}>
-      <Navbar
-        darkMode={darkMode}
-        setDarkMode={setDarkMode}
-      />
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <div className='container'>
-        <SearchBar
-          search={search}
-          setSearch={setSearch}
-        />
+        <SearchBar search={search} setSearch={setSearch} />
 
         <NoteForm addNote={addNote} />
 
