@@ -44,6 +44,30 @@ function App() {
     setNotes(filteredNotes)
   }
 
+  const editNote = (id) => {
+    const updatedText = prompt('Edit your note:')
+
+    if (!updatedText) return
+
+    const updatedNotes = notes.map((note) => {
+      if (note.id === id) {
+        return {
+          ...note,
+          title: updatedText
+            .split(' ')
+            .slice(0, 3)
+            .join(' ')
+            .toUpperCase(),
+          text: updatedText,
+        }
+      }
+
+      return note
+    })
+
+    setNotes(updatedNotes)
+  }
+
   const filteredNotes = notes.filter((note) =>
     note.text.toLowerCase().includes(search.toLowerCase())
   )
@@ -63,6 +87,7 @@ function App() {
               key={note.id}
               note={note}
               deleteNote={deleteNote}
+              editNote={editNote}
             />
           ))}
         </div>
